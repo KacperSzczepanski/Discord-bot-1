@@ -1,0 +1,23 @@
+[Unit]
+Description=Riq bot
+
+# start after network
+After=network.target
+
+
+# try to restart a maximum of X times within X seconds. Abort if limit is reached
+StartLimitBurst=5
+StartLimitIntervalSec=120
+
+[Service]
+Type=simple
+Restart=on-failure
+# try to restart after X seconds on failure
+RestartSec=5
+User=riq
+ExecStart=/usr/bin/node /home/riq/riqbot/bot.js
+
+WorkingDirectory=/home/riq/riqbot/
+
+[Install]
+WantedBy=multi-user.target
